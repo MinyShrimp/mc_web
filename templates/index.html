@@ -11,49 +11,34 @@
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
 </head>
 
-<body>
-    <div class="container-fluid bg-dark text-white pl-4" style='padding-top:5em;'>
-        <h1 class="display-1">새우 서버</h1>1.15.2 24시간 Spigot Bukkit
+<body oncontextmenu="return false" onselectstart="return false" ondragstart="return false">
+    <div class="container-fluid bg-dark text-white pl-4" style='text-align: center; height: 96vh; display: table;' >
+        <div style="display: table-cell; vertical-align: middle;">
+            <h1 class="display-1">새우 서버<img class="align-middle" src={{ url_for('static', filename='img/mining.png') }}></h1>1.15.2 24시간 Minecraft 서버 <br>
+            <nav class="navbar navbar-expand-sm bg-dark navbar-dark justify-content-center">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href={{ url_for('index2', value=1) }}>소개</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href={{ url_for('index2', value=3) }}>공지사항</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href={{ url_for('index2', value=4) }}>게시판</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href={{ url_for('index2', value=5) }}>문의</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href={{ url_for('index2', value=6) }}>EULA</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href={{ url_for('index2', value=7) }}>후원</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
     </div>
-
-    <nav class="navbar navbar-expand-sm bg-dark navbar-dark sticky-top">
-        <ul class="navbar-nav">
-            <li class="nav-item active" value=1>
-                <a class="nav-link" href='#'>메인</a>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                    플러그인
-                </a>
-                <div class="dropdown-menu">
-                    <a class="dropdown-item" href="http://mcs.shrimp.kro.kr:8123/" target='_blank'>Dynmap</a>
-                    <a class="dropdown-item" href="#">TreeGravity</a>
-                    <a class="dropdown-item" href="#">KCKA</a>
-                </div>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href='#'>공지사항</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href='#'>게시판</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href='#'>갤러리</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href='#'>문의</a>
-            </li>
-            <li class="nav-item" value=7>
-                <a class="nav-link" href='#'>EULA</a>
-            </li>
-            <li class="nav-item" value=8>
-                <a class="nav-link" href='#'>기부</a>
-            </li>
-        </ul>
-    </nav>
-    <br>
-
-    <div class="container-fluid" id='contents'> </div>
 
     <div class='container-fluid bg-dark text-white fixed-bottom pt-2 pb-2' id='is_open'> <span style='float:right;'> 서버
             <font color=red>OFF</font> </span> </div>
@@ -71,30 +56,6 @@
         setInterval(function () {
             server_conn();
         }, 300000);
-        $(document).ready(function () {
-            $(".navbar-nav li").click(function () {
-                switch ( $(this).val() ) {
-                    case 1:
-                        $("#contents").load("/intro");
-                        break;
-                    case 2:
-                        break;
-                    case 3:
-                        break;
-                    case 4:
-                        break;
-                    case 5:
-                        break;
-                    case 6:
-                        break;
-                    case 7:
-                        $("#contents").load("/info");
-                        break;
-                    case 8:
-                        break;
-                }
-            });
-        });
     </script>
 </body>
 
