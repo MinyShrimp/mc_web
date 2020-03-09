@@ -30,7 +30,7 @@
 <br><br>
 
 <script>
-    {% for n in notices %}
-    $("#notice_table > tbody:last").append('<tr><td>'+{{ n.ID }}+'</td><td>'+{{ n.Title }}+'</td><td>'+{{ n.Name }}+'</td><td>'+{{ n.Date }}+'</td><td>'+{{ n.View }}+'</td></tr>');
-    {% endfor %}
+    //{% for n in notices %}
+    //$("#notice_table > tbody:last").append("<tr><td>"+{{ n.ID }}+"</td><a href={{ url_for('viewer', id={{ n.ID }}) }}><td>"+{{ n.Title }}+"</td></a><td>"+{{ n.Name }}+"</td><td>"+{{ n.Date }}+"</td><td>"+{{ n.View }}+"</td></tr>");
+    //{% endfor %}
 </script>

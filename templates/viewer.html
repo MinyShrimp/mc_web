@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <!-- config -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <title>새우 서버</title>
+
+    <!-- css -->
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+</head>
+
+<body oncontextmenu="return false" onselectstart="return false" ondragstart="return false">
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark sticky-top">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" href={{ url_for('index') }}>새우 서버</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                    플러그인
+                </a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="http://mcs.shrimp.kro.kr:8123/" target='_blank'>Dynmap</a>
+                    <a class="dropdown-item" href="#">ChopTree</a>
+                    <a class="dropdown-item" href="#">KCKA</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href={{ url_for('index2', value=1) }}>소개</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href={{ url_for('index2', value=3) }}>공지사항</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href={{ url_for('index2', value=4) }}>게시판</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href={{ url_for('index2', value=5) }}>문의</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href={{ url_for('index2', value=6) }}>EULA</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href={{ url_for('index2', value=7) }}>후원</a>
+            </li>
+        </ul>
+    </nav>
+    
+    <div class="container-fluid" style="background-color: #c8c8c8; min-height: 90vh;"> 
+        <div class="container mt-0" id="contents" style="background-color: white; min-height: 90vh;"> 
+            <br>
+            <span>
+                <h1 id='title'> {{ view.Title }} </h1>
+                <span id='name'><b>{{ view.Name }}</b></span> / <span id='date'>{{ view.Date }}</span> / View : <span id='view'><b>{{ view.View }}</b></span>
+            </span>
+            <hr>
+            <div id='contents'>{{ view.Contents }}</div>
+            <br><br><br>
+        </div> 
+    </div>
+
+    <div class='container-fluid bg-dark text-white fixed-bottom pt-2 pb-2' id='is_open'> <span style='float:right;'> 서버
+            <font color=red>OFF</font> </span> </div>
+
+    <!-- js -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+    <script>
+        function server_conn() { $("#is_open").load("/open"); }
+        server_conn();
+        setInterval(function () { server_conn(); }, 300000);
+    </script>
+</body>
+
+</html>

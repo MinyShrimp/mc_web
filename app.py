@@ -34,6 +34,13 @@ def notice():
 def forum():
     return render_template('forum.html')
 
+@app.route('/viewer', methods=['GET'])
+def viewer():
+    #row = db.select_table("SELECT Name, Title, Date, View, Contents From Notice WHERE ID={};".format(request.args.get('id', '1')))
+    #print(row)
+    #return render_template('notice.html', view=row[0])
+    return render_template('viewer.html')
+
 @app.route('/question')
 def question():
     return render_template('question.html')
