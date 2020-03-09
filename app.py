@@ -1,8 +1,10 @@
 from flask import Flask, render_template, request
-from ShrimpServer import ShrimpServer
+from module.ShrimpServer import ShrimpServer
+from module.database import DB_SQL
 
 app = Flask(__name__)
 ss = ShrimpServer()
+#db = DB_SQL()
 
 @app.route('/')
 def index():
@@ -21,8 +23,11 @@ def intro():
 def index2():
     return render_template('index2.html', value=request.args.get('value', 'null'))
 
-@app.route('/notice')
+@app.route('/notice', methods=['GET'])
 def notice():
+    #row = db.select_table("SELECT ID, Name, Title, Date, View From Notice LIMIT 0,10;")
+    #print(row)
+    #return render_template('notice.html', notices=row)
     return render_template('notice.html')
 
 @app.route('/forum')
