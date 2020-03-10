@@ -10,10 +10,11 @@ class DB_SQL():
             db='MINECRAFT',
             charset='utf8'
         )
-        self.cursor = db.cursor()
+        self.cursor = self.db.cursor(pymysql.cursors.DictCursor)
     
     def __del__(self):
-        db.close()
+        self.db.close()
+        pass
 
     def show_tables(self):
         self.cursor.execute('show tables')
@@ -23,25 +24,24 @@ class DB_SQL():
         return self.cursor.fetchall()
     
     def insert_user(self, uid, pw, email, nickname, m_nickname):
-        sql = """INSERT INTO User(uID PW Email Nickname mNickname) VALUES('{}', '{}', '{}', '{}', '{}')""".format(uid, pw, email, nickname, m_nickname)
+        sql = """INSERT INTO User(uID, PW, Email, Nickname, mNickname) VALUES('{}', '{}', '{}', '{}', '{}');""".format(uid, pw, email, nickname, m_nickname)
         self.cursor.execute(sql)
         self.db.commit()
     
-    def insert_forum(self, name, title, date, contents):
-        sql = """INSERT INTO Form(Name Title Date Contents) VALUES('{}', '{}', '{}', '{}')""".format(name, title, date, contents)
+    def insert_forum(self, name, title, date, contents, pw):
+        sql = """INSERT INTO Form(Name, Title, Date, Contents, PW, View) VALUES('{}', '{}', '{}', '{}', '{}', 0);""".format(name, title, date, contents, pw)
         self.cursor.execute(sql)
         self.db.commit()
 
     def insert_notice(self, name, title, date, contents):
-        sql = """INSERT INTO Notice(Name Title Date Contents) VALUES('{}', '{}', '{}', '{}')""".format(name, title, date, contents)
+        sql = """INSERT INTO Notice(Name, Title, Date, Contents, View) VALUES('{}', '{}', '{}', '{}', 0);""".format(name, title, date, contents)
         self.cursor.execute(sql)
         self.db.commit()
     
     def insert_question(self, name, email, telep, homepage, uType, route, question):
-        sql = """INSERT INTO Question(Name Email Telep Homepage Type Route Question) VALUES('{}', '{}', '{}', '{}', '{}', '{}', '{}')""".format(name, email, telep, homepage, uType, route, question)
+        sql = """INSERT INTO Question(Name, Email, Telep, Homepage, Type, Route, Question) VALUES('{}', '{}', '{}', '{}', '{}', '{}', '{}');""".format(name, email, telep, homepage, uType, route, question)
         self.cursor.execute(sql)
         self.db.commit()
 
 if __name__ == "__main__":
-    a = DB_SQL()
-    a.show_tables()
+    db = DB_SQL()

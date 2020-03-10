@@ -1,0 +1,58 @@
+<br>
+<div class="alert alert-danger fade" role="alert"> </div>
+<h1>글 작성</h1>
+<hr>
+<form action="/post" method="post">
+    <div class="form-group">
+        <label for="title">제목</label>
+        <input type="text" class="form-control" id="title" name="title">
+    </div>
+    <div class="form-group">
+        <table width="100%">
+            <td width="90%">
+                <label for="name">작성자</label>
+                <input type="text" class="form-control" id="name" name="name">
+            </td>
+            <td>
+                <label for="pw">비밀번호</label>
+                <input type="password" class="form-control" id="pw" name="pw">
+            </td>
+        </table>
+    </div>
+    <div class="form-group">
+        <label for="comment">내용</label>
+        <textarea class="form-control" rows="22" id="comment" name="comment"></textarea>
+    </div>
+    <div class="d-flex flex-row-reverse">
+        <button type="submit" class="btn btn-primary" id='submit'>작성</button>&nbsp;
+        <button type="button" class="btn btn-outline-danger" id='cancle'>취소</button>
+    </div>
+</form>
+<br><br>
+
+<script>
+    $("#cancle").click(function() {
+        if( confirm('정말 취소하겠습니까?') ) { changeView( 4 ); }
+    })
+
+    function show_alert(str) {
+        $(".alert").text(str);
+        $('.alert').addClass('show')
+        setTimeout(function () { $('.alert').removeClass('show') }, 2000);
+    }
+    $("#submit").click(function() {
+        if( $("#title").val() == '' ) {
+            show_alert("제목을 입력해주세요");
+            return false;
+        } if( $("#comment").val() == '' ) {
+            show_alert("내용을 입력해주세요");
+            return false;
+        } if( $("#name").val() == '' ) {
+            show_alert("이름을 입력해주세요");
+            return false;
+        } if( $("#pw").val() == '' ) {
+            show_alert("패스워드를 입력해주세요");
+            return false;
+        }
+    })
+</script>

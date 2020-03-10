@@ -23,7 +23,12 @@
                 </a>
                 <div class="dropdown-menu">
                     <a class="dropdown-item" href="http://mcs.shrimp.kro.kr:8123/" target='_blank'>Dynmap</a>
-                    <a class="dropdown-item" href="#">ChopTree</a>
+                    <a class="dropdown-item" href="#">LuckPerms</a>
+                    <a class="dropdown-item" href="#">CoreProtect</a>
+                    <a class="dropdown-item" href="#">NoExplosion</a>
+                    <a class="dropdown-item" href="#">ChopTree2</a>
+                    <a class="dropdown-item" href="#">SinglePlayerSleep</a>
+                    <a class="dropdown-item" href="#">RaspberryJuice</a>
                     <a class="dropdown-item" href="#">KCKA</a>
                 </div>
             </li>
@@ -84,6 +89,12 @@
                     break;
                 case 7:
                     $("#contents").load("/donate");
+                    break;
+                case 8:
+                    $("#contents").load("/viewer?id={{id}}&type={{type}}");
+                    break;
+                case 9:
+                    $("#contents").load("/write");
                     break;
             }
         }
