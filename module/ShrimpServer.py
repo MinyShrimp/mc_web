@@ -4,7 +4,7 @@ from mcpi.minecraft import Minecraft
 class ShrimpServer:
     def __init__(self):
         self.old_t, self.new_t = int(round(time.time() * 1000)), int(round(time.time() * 1000))
-        self.max_t = 5000 # ms
+        self.max_t = 300000 # ms
 
         self.mc    = None
         self.stats = False

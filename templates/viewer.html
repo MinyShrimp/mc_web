@@ -1,22 +1,71 @@
 <br>
 <span>
-    <span style='font-size: small;'> 
+    <span style='font-size: small;'>
         {% if type == 'Notice' %}
         - 공지사항
         {% else %}
         - 게시판
-        {% endif %} 
+        {% endif %}
     </span>
     <h1 id='title'> {{ view.Title }} </h1>
     <span id='name'><b>{{ view.Name }}</b></span> / <span id='date'>{{ view.Date }}</span> / View : <span
         id='view'><b>{{ view.View }}</b></span>
 </span>
 <hr>
-<div id='contents'>{{ view.Contents }}</div>
-
+<div id='contents'>{{ view.Contents|replace('\n', '<br>'|safe) }}</div>
+<hr>
 <div class="d-flex flex-row-reverse">
-    <button type="button" class="btn btn-danger" id='delete'>삭제</button>&nbsp;
-    <button type="button" class="btn btn-outline-primary" id='fix'>수정</button>
+    <button type="button" id="deleteBtn" class="btn btn-danger" data-toggle="modal" data-target="#Modal"> 삭제 </button>&nbsp;
+    <button type="button" id="fixBtn"    class="btn btn-outline-primary" data-toggle="modal" data-target="#Modal"> 수정 </button>
 </div>
 
+<!-- The Delete Modal -->
+<div class="modal" id="Modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">암호를 입력하세요</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <!-- Modal body -->
+            <form action="/write" method="post">
+                <div class="modal-body">
+                    <div class="alert alert-danger fade" role="alert"> </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" id="pw" name="pw">
+                        <input type="text" id="type" name="type" style="display: none;">
+                        <input type="text" id="id"   name="id"   style="display: none;">
+                    </div>
+                </div>
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary" id="submit">확인</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal" id="close">닫기</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 <br><br><br>
+
+<script>
+    $("document").ready(function() { $('.alert').hide(); });
+
+    $("#deleteBtn").click(function() { $("#type").val( 1 ); $("#id").val( {{ id }} ); });
+    $("#fixBtn").click(function() { $("#type").val( 2 ); $("#id").val( {{ id }} ); });
+
+    function show_alert(str) {
+        $('.alert').show();
+        $(".alert").text(str);
+        $('.alert').addClass('show')
+        setTimeout(function () { $('.alert').removeClass('show'); $('.alert').hide(); }, 2000);
+    }
+    $("#submit").click(function() {
+        if( $("#pw").val() == '' ) {
+            show_alert("암호를 입력해주세요");
+            return false;
+        }
+    })
+    $("#close").click(function() { $("#pw").val(''); })
+</script>

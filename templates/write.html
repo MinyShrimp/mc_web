@@ -5,13 +5,13 @@
 <form action="/post" method="post">
     <div class="form-group">
         <label for="title">제목</label>
-        <input type="text" class="form-control" id="title" name="title">
+        <input type="text" class="form-control" id="title" name="title" value='{{ data.Title }}'>
     </div>
     <div class="form-group">
         <table width="100%">
             <td width="90%">
                 <label for="name">작성자</label>
-                <input type="text" class="form-control" id="name" name="name">
+                <input type="text" class="form-control" id="name" name="name" value='{{ data.Name }}'>
             </td>
             <td>
                 <label for="pw">비밀번호</label>
@@ -21,8 +21,10 @@
     </div>
     <div class="form-group">
         <label for="comment">내용</label>
-        <textarea class="form-control" rows="22" id="comment" name="comment"></textarea>
+        <textarea class="form-control" rows="22" id="comment" name="comment">{{ data.Contents }}</textarea>
     </div>
+    <input type="text" name="type" value="{{ _type }}" style="display: none;">
+    <input type="text" name="id" value="{{ _id }}" style="display: none;">
     <div class="d-flex flex-row-reverse">
         <button type="submit" class="btn btn-primary" id='submit'>작성</button>&nbsp;
         <button type="button" class="btn btn-outline-danger" id='cancle'>취소</button>
@@ -31,14 +33,19 @@
 <br><br>
 
 <script>
+    $("document").ready(function() { 
+        $('.alert').hide(); 
+    });
+
     $("#cancle").click(function() {
         if( confirm('정말 취소하겠습니까?') ) { changeView( 4 ); }
     })
 
     function show_alert(str) {
+        $('.alert').show();
         $(".alert").text(str);
         $('.alert').addClass('show')
-        setTimeout(function () { $('.alert').removeClass('show') }, 2000);
+        setTimeout(function () { $('.alert').removeClass('show'); $('.alert').hide(); }, 2000);
     }
     $("#submit").click(function() {
         if( $("#title").val() == '' ) {

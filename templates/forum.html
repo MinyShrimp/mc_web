@@ -32,7 +32,10 @@
 <br><br>
 
 <script>
+    var date = moment(new Date()).format('YYYY-MM-DD')
     {% for n in notices %}
-    $("#forum_table > tbody:last").append("<tr><td>{{ n.ID }}</td><td style='text-align: left;'><a href={{ url_for('index2', value=8, id=n.ID, type='Form') }}>{{ n.Title }}</a></td><td>{{ n.Name }}</td><td>{{ n.Date }}</td><td>{{ n.View }}</td></tr>");
+    var db_date = "{{ n.Date }}".replace(/ .+/gi, "");
+    var result = ( date == db_date ) ? "{{ n.Date }}".replace(/.+ /gi, "") : db_date;
+    $("#forum_table > tbody:last").append("<tr><td>{{ n.ID }}</td><td style='text-align: left;'><a href={{ url_for('index2', value=8, id=n.ID, type='Forum') }}>{{ n.Title }}</a></td><td>{{ n.Name }}</td><td>"+result+"</td><td>{{ n.View }}</td></tr>");
     {% endfor %}
 </script>

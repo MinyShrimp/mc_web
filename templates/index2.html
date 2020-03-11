@@ -22,7 +22,7 @@
                     플러그인
                 </a>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="http://mcs.shrimp.kro.kr:8123/" target='_blank'>Dynmap</a>
+                    <a class="dropdown-item" href="#">Dynmap</a>
                     <a class="dropdown-item" href="#">LuckPerms</a>
                     <a class="dropdown-item" href="#">CoreProtect</a>
                     <a class="dropdown-item" href="#">NoExplosion</a>
@@ -34,6 +34,9 @@
             </li>
             <li class="nav-item" value=1>
                 <a class="nav-link" href='#'>소개</a>
+            </li>
+            <li class="nav-item" value=2>
+                <a class="nav-link" href='#'>맵</a>
             </li>
             <li class="nav-item" value=3>
                 <a class="nav-link" href='#'>공지사항</a>
@@ -53,17 +56,19 @@
         </ul>
     </nav>
 
-    <div class="container-fluid" style="background-color: #c8c8c8; min-height: 90vh;"> 
-        <div class="container mt-0" id="contents" style="background-color: white; min-height: 90vh;"> </div> 
-    </div>
+    <div class="container-fluid" id="contents-full" style="background-color: #c8c8c8; min-height: 90vh;"> 
+        <div class="container mt-0" id="contents" style="background-color: white; min-height: 90vh;"> </div>     
+    </div>    
 
-    <div class='container-fluid bg-dark text-white fixed-bottom pt-2 pb-2' id='is_open'> <span style='float:right;'> 서버
-            <font color=red>OFF</font> </span> </div>
+    <div class='container-fluid bg-dark text-white fixed-bottom pt-2 pb-2' id='is_open'> 
+        <span style='float:right;'> 서버 <font color=red>OFF</font> </span> 
+    </div>
 
     <!-- js -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 
     <script>
         function server_conn() { $("#is_open").load("/open"); }
@@ -74,6 +79,9 @@
             switch (value) {
                 case 1:
                     $("#contents").load("/intro");
+                    break;
+                case 2:
+                    $("#contents").load("/map");
                     break;
                 case 3:
                     $("#contents").load("/notice");
@@ -94,7 +102,7 @@
                     $("#contents").load("/viewer?id={{id}}&type={{type}}");
                     break;
                 case 9:
-                    $("#contents").load("/write");
+                    $("#contents").load("/write?id={{id}}");
                     break;
             }
         }
