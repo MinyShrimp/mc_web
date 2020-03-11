@@ -6,7 +6,7 @@ class DB_SQL():
             host= '34.80.56.3',
             port=3306,
             user='root',
-            passwd='alsl1203',
+            passwd='****',
             db='MINECRAFT',
             charset='utf8'
         )
