@@ -12,7 +12,7 @@
         id='view'><b>{{ view.View }}</b></span>
 </span>
 <hr>
-<div id='contents'>{{ view.Contents|replace('\n', '<br>'|safe) }}</div>
+<div id='contents'>{{ view.Contents | safe }}</div>
 <hr>
 <div class="d-flex flex-row-reverse">
     <button type="button" id="deleteBtn" class="btn btn-danger" data-toggle="modal" data-target="#Modal"> 삭제 </button>&nbsp;

@@ -1,7 +1,11 @@
+<link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-bs4.css" rel="stylesheet">
+<script src="/static/js/summernote-bs4.min.js"></script>
+<script src="/static/js/summernote-ko-KR.min.js"></script>
+
 <br>
-<div class="alert alert-danger fade" role="alert"> </div>
 <h1>글 작성</h1>
 <hr>
+<div class="alert alert-danger fade" role="alert"> </div>
 <form action="/post" method="post">
     <div class="form-group">
         <label for="title">제목</label>
@@ -21,7 +25,7 @@
     </div>
     <div class="form-group">
         <label for="comment">내용</label>
-        <textarea class="form-control" rows="22" id="comment" name="comment">{{ data.Contents }}</textarea>
+        <textarea id="summernote" name="comment"></textarea>
     </div>
     <input type="text" name="type" value="{{ _type }}" style="display: none;">
     <input type="text" name="id" value="{{ _id }}" style="display: none;">
@@ -33,33 +37,87 @@
 <br><br>
 
 <script>
-    $("document").ready(function() { 
-        $('.alert').hide(); 
+    $("document").ready(function () {
+        $('.alert').hide();
+        $('#summernote').summernote({
+            placeholder: '{{ data.Contents }}',
+            minHeight: 470,
+            lang: 'ko-KR',
+            callbacks: {
+                onImageUpload: function(files) {
+                    sendFile(files[0]);
+                }
+            }
+        });
     });
 
-    $("#cancle").click(function() {
-        if( confirm('정말 취소하겠습니까?') ) { changeView( 4 ); }
+    function sendFile(file) {
+        data = new FormData();
+        data.append("file", file);
+        $.ajax({
+            url: "/upload_file",
+            data: data,
+            cache: false,
+            type: "POST",
+            contentType: false,
+            processData: false,
+            success: function(url) {
+                $('#summernote').summernote('insertImage', url);
+            }
+        });
+    }
+
+    $("#cancle").click(function () {
+        if (confirm('정말 취소하겠습니까?')) {
+            changeView(4);
+        }
     })
 
-    function show_alert(str) {
+    function show_alert(str, obj) {
         $('.alert').show();
         $(".alert").text(str);
-        $('.alert').addClass('show')
-        setTimeout(function () { $('.alert').removeClass('show'); $('.alert').hide(); }, 2000);
+        $('.alert').addClass('show');
+        console.log(obj);
+        $(obj).focus();
+        setTimeout(function () {
+            $('.alert').removeClass('show');
+            $('.alert').hide();
+        }, 2000);
     }
-    $("#submit").click(function() {
-        if( $("#title").val() == '' ) {
-            show_alert("제목을 입력해주세요");
+    $("#submit").click(function () {
+        if ($("#title").val() == '') {
+            show_alert("제목을 입력해주세요", $("#title"));
             return false;
-        } if( $("#comment").val() == '' ) {
-            show_alert("내용을 입력해주세요");
+        } else {
+            var pattern_spc = /[~!@#$%^&*()_+|<>?:{}]/;
+            if( pattern_spc.test($("#title").val()) ) {
+                show_alert("특수문자는 넣을 수 없습니다.", $("#title"));
+                return false;
+            }
+        }
+        if ($("#summernote").val() == '') {
+            show_alert("내용을 입력해주세요", $("#summernote"));
             return false;
-        } if( $("#name").val() == '' ) {
-            show_alert("이름을 입력해주세요");
+        }
+        if ($("#name").val() == '') {
+            show_alert("이름을 입력해주세요", $("#name"));
             return false;
-        } if( $("#pw").val() == '' ) {
-            show_alert("패스워드를 입력해주세요");
+        } else {
+            var pattern_spc = /[~!@#$%^&*()_+|<>?:{}]/;
+            if( pattern_spc.test($("#name").val()) ) {
+                show_alert("특수문자는 넣을 수 없습니다.", $("#name"));
+                return false;
+            }
+        }
+        if ($("#pw").val() == '') {
+            show_alert("패스워드를 입력해주세요", $("#pw"));
             return false;
+        } else {
+            var pattern_spc = /[~!@#$%^&*()_+|<>?:{}]/;
+            if( pattern_spc.test($("#pw").val()) ) {
+                show_alert("특수문자는 넣을 수 없습니다.", $("#pw"));
+                return false;
+            }
         }
     })
 </script>

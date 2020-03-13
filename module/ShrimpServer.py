@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import time
 from mcpi.minecraft import Minecraft
 
@@ -23,7 +25,11 @@ class ShrimpServer:
 
     def getPlayerLen(self):
         if self.mc != None:
-            return len(self.mc.getPlayerEntityIds())
+            try:
+                return len(self.mc.getPlayerEntityIds())
+            except:
+                return 99
 
 if __name__ == "__main__":
     ss = ShrimpServer()
+

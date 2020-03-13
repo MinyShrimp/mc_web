@@ -5,54 +5,53 @@
 귀하의 소중한 의견 참고하여 더 좋은 서버를 제공해드리겠습니다.
 <br><br>
 <div class="container-fluid">
-    <form>
+    <form action="/q_send" method="post">
         <div class="alert alert-danger fade" role="alert"> </div>
         <div class="row">
             <div class="form-group col-sm">
                 <label for="name_input">성함 <font color="red">*</font></label>
                 <input type="text" class="form-control mr-4" id="name_input" placeholder="Name" aria-label="Name"
-                    aria-describedby="basic-addon1">
+                    aria-describedby="basic-addon1" name="name">
             </div>
             <div class="form-group col-sm">
                 <label for="email_input">이메일 <font color="red">*</font></label>
                 <input type="text" class="form-control" id="email_input" placeholder="000@example.com"
-                    aria-label="Email" aria-describedby="basic-addon2">
+                    aria-label="Email" aria-describedby="basic-addon2" name="email">
             </div>
         </div>
         <div class="row">
             <div class="form-group col-sm">
                 <label for="telp_input">전화번호</label>
                 <input type="text" class="form-control mr-4" id="telp_input" placeholder="000-0000-0000"
-                    aria-label="Telep" aria-describedby="basic-addon3">
+                    aria-label="Telep" aria-describedby="basic-addon3" name="telep">
             </div>
             <div class="form-group col-sm">
                 <label for="homep_input">홈페이지</label>
                 <input type="text" class="form-control" id="homep_input" placeholder="http://" aria-label="Homepage"
-                    aria-describedby="basic-addon4">
+                    aria-describedby="basic-addon4" name="homepage">
             </div>
         </div>
         <div class="row">
             <div class="form-group col-sm">
                 <label for="classification">분류 <font color="red">*</font></label>
-                <select id="classification" class="custom-select">
-                    <option selected>선택</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
+                <select id="classification" class="custom-select" name="type">
+                    <option value="선택" selected>선택</option>
+                    <option value="제안">아이디어 제안</option>
+                    <option value="버그">버그</option>
                 </select>
             </div>
             <div class="form-group col-sm">
                 <label for="Route">알게 된 경로 <font color="red">*</font></label>
-                <select id="Route" class="custom-select">
-                    <option selected>선택</option>
-                    <option value="1">인터넷 검색</option>
-                    <option value="2">지인 추천</option>
+                <select id="Route" class="custom-select" name="route">
+                    <option value="선택" selected>선택</option>
+                    <option value="인터넷 검색">인터넷 검색</option>
+                    <option value="지인 추천">지인 추천</option>
                 </select>
             </div>
         </div>
         <div class="form-group">
             <label for="question_input">내용 <font color="red">*</font></label>
-            <textarea class="form-control" id="question_input" aria-label="question"></textarea>
+            <textarea class="form-control" id="question_input" aria-label="question" name="question"></textarea>
         </div>
         <div class="form-group">
             <div class="custom-control custom-checkbox">
@@ -70,7 +69,7 @@
                 sell or rent this information to anyone.
             </div>
         </div>
-        <div class="d-flex justify-content-end"> <button id="submitBtn" type="button" class="btn btn-primary">보내기</button>
+        <div class="d-flex justify-content-end"> <button id="submitBtn" type="submit" class="btn btn-primary">보내기</button>
         </div>
     </form>
 </div>

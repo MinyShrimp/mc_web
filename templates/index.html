@@ -9,16 +9,20 @@
 
     <!-- css -->
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+    <link href="https://fonts.googleapis.com/css?family=Black+Han+Sans&display=swap" rel="stylesheet">
 </head>
 
 <body oncontextmenu="return false" onselectstart="return false" ondragstart="return false">
     <div class="container-fluid bg-dark text-white pl-4" style='text-align: center; height: 96vh; display: table;' >
         <div style="display: table-cell; vertical-align: middle;">
-            <h1 class="display-1">새우 서버<img class="align-middle" src={{ url_for('static', filename='img/mining.png') }}></h1>1.15.2 24시간 Minecraft 서버 <br>
+            <h1 class="display-1" style="font-family: 'Black Han Sans';">새우 서버<img class="align-middle" src={{ url_for('static', filename='img/mining.png') }}></h1>1.15.2 24시간 Minecraft 서버 <br>
             <nav class="navbar navbar-expand-sm bg-dark navbar-dark justify-content-center">
                 <ul class="navbar-nav">
                     <li class="nav-item">
                         <a class="nav-link" href={{ url_for('index2', value=1) }}>소개</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href={{ url_for('index2', value=2) }}>맵</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href={{ url_for('index2', value=3) }}>공지사항</a>
@@ -32,9 +36,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href={{ url_for('index2', value=6) }}>EULA</a>
                     </li>
-                    <li class="nav-item">
+                    <!--<li class="nav-item">
                         <a class="nav-link" href={{ url_for('index2', value=7) }}>후원</a>
-                    </li>
+                    </li>-->
                 </ul>
             </nav>
         </div>
