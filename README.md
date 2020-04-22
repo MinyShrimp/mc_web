@@ -73,7 +73,7 @@
     - /img/
         - mining.png : 서버 index 페이지에서 보여주기 위한 이미지 파일
 - /module/
-    - database.py : SQLite와 연결할 수 있도록 만든 python class
+    - db.py : SQLite와 연결할 수 있도록 만든 python class
     - ShrimpServer.py : 마인크래프트 서버와 연결할 수 있도록 만든 python class
 - /files/uploads/
     - 게시글과 공지사항에 업로드되는 사진을 모아놓는 폴더
