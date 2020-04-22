@@ -11,14 +11,17 @@
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
 </head>
 
-<body oncontextmenu="return false" onselectstart="return false" ondragstart="return false">
+<body>
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark sticky-top">
-        <a class="navbar-brand" href={{ url_for('index') }}>새우 서버(ADMIN)</a>
+        <a class="navbar-brand" href="#">새우 서버(ADMIN)</a>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar"> <span class="navbar-toggler-icon"></span> </button>
 
         <div class="collapse navbar-collapse" id="collapsibleNavbar">
             <ul class="navbar-nav">
+                <li class="nav-item" value=1>
+                    <a class="nav-link" href='#'>소개 편집</a>
+                </li>
                 <li class="nav-item" value=2>
                     <a class="nav-link" href='#'>맵</a>
                 </li>
@@ -31,7 +34,7 @@
                 <li class="nav-item" value=5>
                     <a class="nav-link" href='#'>문의</a>
                 </li>
-                <li class="nav-item" value=6>
+                <li class="nav-item">
                     <a class="nav-link" href='/admin-logout'>로그아웃</a>
                 </li>
             </ul>
@@ -51,6 +54,57 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+
+    <script>
+        function server_conn() { $("#is_open").load("/open"); }
+        server_conn();
+        setInterval(function () { server_conn(); }, 300000);
+
+        function changeView(value) {
+            switch (value) {
+                case 1:
+                    break;
+                case 2:
+                    $("#contents").load("/map");
+                    break;
+                case 3:
+                    $("#contents").load("/admin-notice?page=1");
+                    break;
+                case 4:
+                    $("#contents").load("/admin-forum?page=1");
+                    break;
+                case 5:
+                    $("#contents").load("/admin-question");
+                    break;
+                case 6:
+                    $("#contents").load("/admin-viewer?id={{id}}&type={{type}}");
+                    break;
+                case 7:
+                    $("#contents").load("/admin-write?id={{id}}&fix={{ fix }}");
+                    break;
+            }
+        }
+        $(document).ready(function () {
+            if( {{submit}} == 1 ) {
+                sessionStorage.setItem('uid', '{{result}}');
+            }
+
+            var tmp_value = {{ value }};
+            if( tmp_value != null ) { changeView( tmp_value ); }
+            $(".navbar-nav li").click(function () {
+                history.pushState($(this).val(), null, "/admin-home?value=" + $(this).val());
+                changeView($(this).val());
+            });
+        });
+        $(window).bind('popstate', function(event) {
+            var data = event.originalEvent.state;
+            if(data) {
+                changeView( data );
+            } else {
+                
+            }
+        });
+    </script>
 
 </body>
 

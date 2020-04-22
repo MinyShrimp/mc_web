@@ -1,0 +1,12 @@
+<script>
+    var date = moment(new Date()).format('YYYY-MM-DD')
+    {% for n in notices %}
+    var db_date = "{{ n.Date }}".replace(/ .+/gi, "");
+    var result = ( date == db_date ) ? "{{ n.Date }}".replace(/.+ /gi, "") : db_date;
+    var id = sessionStorage.getItem('uid');
+
+    $("#{{type}}_table > tbody:last").append(
+        "<tr><td>{{ n.ID }}</td><td style='text-align: left;'><a href='/admin-home?result="+id+"&value=6&id={{n.ID}}&type={{ type }}'>{{ n.Title }}</a></td><td>{{ n.Name }}</td><td>"+result+"</td><td>{{ n.View }}</td></tr>"
+    );
+    {% endfor %}
+</script>

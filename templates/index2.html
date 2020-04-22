@@ -95,10 +95,10 @@
                     $("#contents").load("/map");
                     break;
                 case 3:
-                    $("#contents").load("/notice?page=1");
+                    $("#contents").load("/notice?page={{page}}");
                     break;
                 case 4:
-                    $("#contents").load("/forum?page=1");
+                    $("#contents").load("/forum?page={{page}}");
                     break;
                 case 5:
                     $("#contents").load("/question");
@@ -106,14 +106,11 @@
                 case 6:
                     $("#contents").load("/info");
                     break;
-                //case 7:
-                //    $("#contents").load("/donate");
-                //    break;
                 case 8:
                     $("#contents").load("/viewer?id={{id}}&type={{type}}");
                     break;
                 case 9:
-                    $("#contents").load("/write?id={{id}}");
+                    $("#contents").load("/write?id={{id}}&fix={{ fix }}");
                     break;
                 case 10:
                     $("#contents").load("/q_send_complete");

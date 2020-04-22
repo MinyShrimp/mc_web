@@ -14,12 +14,10 @@
 <hr>
 <div id='contents'>{{ view.Contents | safe }}</div>
 <hr>
-{% if type == 'Forum' %}
 <div class="d-flex flex-row-reverse">
     <button type="button" id="deleteBtn" class="btn btn-danger" data-toggle="modal" data-target="#Modal"> 삭제 </button>&nbsp;
     <button type="button" id="fixBtn"    class="btn btn-outline-primary" data-toggle="modal" data-target="#Modal"> 수정 </button>
 </div>
-{% endif %}
 
 <!-- The Delete Modal -->
 <div class="modal" id="Modal">
